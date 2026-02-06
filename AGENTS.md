@@ -32,18 +32,50 @@ npm run build             # 生产构建
 
 ## 测试命令
 
-**注意**: 项目尚未配置测试框架。如需添加测试：
-- **后端**: 使用 `pytest` (Python)
-- **前端**: 使用 `vitest` 或 `jest` (Vue)
+### 后端单元测试 (pytest)
 
-### 运行单个测试（添加后）
+**安装依赖**（首次）：
 ```bash
-# Python (pytest)
-pytest tests/test_indicators.py::test_macd -v
-
-# JavaScript (vitest)
-npx vitest run src/components/SignalAlert.test.js
+cd backend
+source venv/bin/activate
+pip install -r requirements.txt
 ```
+
+**运行所有测试**：
+```bash
+cd backend
+source venv/bin/activate
+pytest tests/ -v
+```
+
+**运行单个测试文件**：
+```bash
+pytest tests/test_industry_service.py -v
+pytest tests/test_industry_router.py -v
+pytest tests/test_database.py -v
+```
+
+**运行单个测试用例**：
+```bash
+pytest tests/test_industry_service.py::TestIndustryService::test_get_stock_industry_existing -v
+```
+
+**生成覆盖率报告**：
+```bash
+pytest tests/ --cov=app --cov-report=html
+# 报告生成在 htmlcov/index.html
+```
+
+### 测试文件说明
+
+- `tests/test_industry_service.py` - 行业服务层单元测试
+- `tests/test_industry_router.py` - 行业路由API测试
+- `tests/test_database.py` - 数据库模型测试
+- `tests/conftest.py` - 测试配置和Fixtures
+
+### 前端测试 (待配置)
+- 使用 `vitest` 或 `jest` (Vue)
+- 运行命令: `npx vitest run`
 
 ## 代码风格规范
 

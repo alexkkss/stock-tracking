@@ -9,7 +9,7 @@ from apscheduler.triggers.interval import IntervalTrigger
 from contextlib import asynccontextmanager
 
 from app.database import init_db
-from app.routers import stocks, indicators, backtest
+from app.routers import stocks, indicators, backtest, industries
 from app.services.monitor_service import monitor_service
 
 # 存储WebSocket连接
@@ -93,6 +93,7 @@ app.add_middleware(
 app.include_router(stocks.router)
 app.include_router(indicators.router)
 app.include_router(backtest.router)
+app.include_router(industries.router)
 
 
 # WebSocket端点

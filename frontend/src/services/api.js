@@ -36,7 +36,18 @@ export const api = {
   getQuote: (code) => request(`/indicators/quote?code=${code}`),
   
   // 获取股票列表
-  getStocks: () => request('/stocks/')
+  getStocks: () => request('/stocks/'),
+  
+  // 行业板块相关 API
+  // 获取所有行业列表
+  getIndustries: () => request('/industries/'),
+  
+  // 获取行业内的股票（前10涨幅和后10涨幅）
+  getIndustryStocks: (industry, sortBy = 'change') => 
+    request(`/industries/${encodeURIComponent(industry)}/stocks?sort_by=${sortBy}`),
+  
+  // 获取股票所属行业
+  getStockIndustry: (code) => request(`/industries/stock/${code}`)
 }
 
 // WebSocket服务

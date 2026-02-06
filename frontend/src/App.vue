@@ -18,6 +18,10 @@
                 <el-icon><Monitor /></el-icon>
                 实时监控
               </el-menu-item>
+              <el-menu-item index="/industry">
+                <el-icon><Histogram /></el-icon>
+                板块监控
+              </el-menu-item>
               <el-menu-item index="/backtest">
                 <el-icon><DataAnalysis /></el-icon>
                 策略回测
@@ -50,13 +54,20 @@
 <script>
 import { ref, reactive, onMounted, onUnmounted, provide } from 'vue'
 import { useRoute } from 'vue-router'
+import { Monitor, Histogram, DataAnalysis, TrendCharts, Connection, Warning } from '@element-plus/icons-vue'
 import SignalAlert from './components/SignalAlert.vue'
 import { api, ws } from './services/api'
 
 export default {
   name: 'App',
   components: {
-    SignalAlert
+    SignalAlert,
+    Monitor,
+    Histogram,
+    DataAnalysis,
+    TrendCharts,
+    Connection,
+    Warning
   },
   setup() {
     const route = useRoute()
